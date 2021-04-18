@@ -1,5 +1,14 @@
 package com.nhom6;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.Scanner;
+
 public class DFS {
 private LinkedList<Integer> a[];
 		private int count=0;
@@ -127,4 +136,4 @@ private LinkedList<Integer> a[];
 
 
 
-}
+
