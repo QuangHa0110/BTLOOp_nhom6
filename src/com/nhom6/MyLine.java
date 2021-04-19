@@ -1,9 +1,11 @@
 package com.nhom6;
+
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.geom.Line2D;
+import java.awt.geom.Point2D;
 import java.awt.Polygon;
 
 public class MyLine {
@@ -13,11 +15,10 @@ public class MyLine {
 	private int indexP2;
 	private Line2D.Double line;
 	private Color color[] = { Color.white, Color.blue };
-	private int type = 0;
 	// so chi cua line
 	private int indexLine = 0;
 	// ban kinh cua hinh tron point
-	private final double radius = 15;
+	private final double radius = 16;
 
 	public MyLine(Point p1, Point p2, int indexP1, int indexP2) {
 		line = new Line2D.Double(p1, p2);
@@ -47,8 +48,8 @@ public class MyLine {
 		// range la do dai duong noi 2 point
 		double range = Math.sqrt(Math.pow((line.x2 - line.x1), 2) + Math.pow((line.y2 - line.y1), 2));
 		// tao hai diem va line1 ben trai cua line
-		Point p1 = new Point((int) (line.x1 + (line.y1 - line.y2) * radius / range), (int) (line.y1 + (line.x2 - line.x1) * radius / range));
-		Point p2 = new Point((int) (line.x2 + (line.y1 - line.y2) * radius / range), (int) (line.y2 + (line.x2 - line.x1) * radius / range));
+		Point2D.Double p1 = new Point2D.Double(line.x1 + Math.sqrt(2) * (line.y1 - line.y2 + line.x2 - line.x1) * radius / (2 * range), line.y1 + Math.sqrt(2) * (line.x2 - line.x1 + line.y2 - line.y1) * radius / (2 * range) );
+		Point2D.Double p2 = new Point2D.Double(line.x2 + Math.sqrt(2) * (line.y1 - line.y2 + line.x1 - line.x2) * radius / (2 * range), line.y2 + Math.sqrt(2) * (line.x2 - line.x1 + line.y1 - line.y2) * radius / (2 * range) );
 		Line2D.Double line1 = new Line2D.Double(p1, p2);
 		g.draw(line1);
 		if (indexLine > 0) {
@@ -79,8 +80,8 @@ public class MyLine {
 		g.setColor(Color.black);
 		// range la do dai duong noi 2 point
 		double range = Math.sqrt(Math.pow((line.x2 - line.x1), 2) + Math.pow((line.y2 - line.y1), 2));
-		Point p1 = new Point((int) (line.x1 + (line.y1 - line.y2) * radius / range), (int) (line.y1 + (line.x2 - line.x1) * radius / range));
-		Point p2 = new Point((int) (line.x2 + (line.y1 - line.y2) * radius / range), (int) (line.y2 + (line.x2 - line.x1) * radius / range));
+		Point2D.Double p1 = new Point2D.Double(line.x1 + Math.sqrt(2) * (line.y1 - line.y2 + line.x2 - line.x1) * radius /(2 * range), line.y1 + Math.sqrt(2) * (line.x2 - line.x1 + line.y2 - line.y1) * radius / (2 * range) );
+		Point2D.Double p2 = new Point2D.Double(line.x2 + Math.sqrt(2) * (line.y1 - line.y2 + line.x1 - line.x2) * radius /(2 * range), line.y2 + Math.sqrt(2) * (line.x2 - line.x1 + line.y1 - line.y2) * radius / (2 * range) );
 		Line2D.Double line1 = new Line2D.Double(p1, p2);
 		// 2 mang x,y la mang chua toa do 3 diem cua tam giac mui ten
 		int[] xPoint2 = { (int) line1.x2, (int) (line1.x2 + 10 * (line1.x1 - line1.x2) / range + 5 * (line1.y2 - line1.y1) / range), (int) (line1.x2 + 10 * (line1.x1 - line1.x2) / range - 5 * (line1.y2 - line1.y1) / range) };
@@ -105,14 +106,6 @@ public class MyLine {
 
 	public void setIndexP2(int indexP2) {
 		this.indexP2 = indexP2;
-	}
-
-	public int getType() {
-		return type;
-	}
-
-	public void setType(int type) {
-		this.type = type;
 	}
 
 	public int getIndexLine() {
