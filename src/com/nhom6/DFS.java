@@ -100,6 +100,7 @@ private LinkedList<Integer> a[];
 			this.start--;
 			this.end--;
 	}
+	// In đường đi 
 	public void inDuongDi(int soCanh) {
 		this.setCount(this.getCount()+1);
 		System.out.println("/n"+this.start++);
@@ -107,6 +108,7 @@ private LinkedList<Integer> a[];
 			System.out.println("->"+(this.L.get(i)+1));
 		}
 	}
+	//Koiwr tạo giá trị mảng đánh dấu và mảng trạng thái bằng 0
 	public void KhoiTao() {
 		for(int i=0;i<V;i++) {
 			this.danhDau.set(i, 0);
@@ -115,18 +117,25 @@ private LinkedList<Integer> a[];
 		this.danhDau.set(this.start, 1);
 		this.L.set(1, this.start);
 	}
+	
 	public void TRYDFS(int soCanh) {
 		
 		if(this.L.get(-1+soCanh)==end) {
+			// Điểm đích thì in ra đường đi
 			inDuongDi(soCanh);
 		}else {
+			//Không phải điểm đích thì duyệt những điểm mà từ điểm đó có đường đi
 			for(int i=0;i<this.a[-1+soCanh].size();i++) {
 				if(this.danhDau.get(i)==0) {
 					this.L.set(soCanh, this.a[-1+soCanh].get(i));
+					// Thêm vào mảng đường đi
 					this.danhDau.set(this.a[-1+soCanh].get(i),1);
+					//Thiết lập trạng thái bằng 1
 					TRYDFS(soCanh);
+					//Quay lui thiết lập mảng đường đi tại điểm quay lui là 0
 					this.L.set(soCanh, 0);
-					this.danhDau.set(this.a[-1+soCanh].get(i),1);
+					//THiết lập trạng thía tại điểm quay lui 0
+					this.danhDau.set(this.a[-1+soCanh].get(i),0);
 					
 				}
 			}
