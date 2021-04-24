@@ -20,10 +20,10 @@ public class MyPoint extends Canvas {
 		//Ve diem mau sac diem so chi diem
 		g.setColor(Color.BLACK);
 		//((Graphics2D) g).draw((Shape) Point);
-		g.drawOval((int)Point.getX(),(int)Point.getY(),5,5);
+		g.drawOval((int)Point.getX(),(int)Point.getY(),20,20);
 		if(indexPoint>0) {
 			String s="";
-			g.drawString(s+indexPoint,(int)Point.getX(),(int)(Point.getY()+20));
+			g.drawString(s+indexPoint,(int)Point.getX()+6,(int)(Point.getY()+15));
 		}
 	}
 	public int getIndexPoint() {
