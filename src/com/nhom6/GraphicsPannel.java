@@ -43,7 +43,8 @@ public class GraphicsPannel {
 	public void createGraph(Graphics g) {	
 		MyPoint mp1 = new MyPoint(400, 400, 1);
 		listPoint.add(mp1);
-		double rad = 360/(numberPoint*1.0);
+		double deg = 360/(numberPoint*1.0);
+		double rad = Math.toRadians(deg);
 		for (int i = 1; i < numberPoint; i++) {
 			//Tao toa do diem nam tren 1 duong tron
 			double x = 600 - Math.cos(rad*i)*200;
