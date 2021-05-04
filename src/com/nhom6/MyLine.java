@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.geom.Line2D;
+import java.awt.geom.Path2D;
 import java.awt.geom.Point2D;
 import java.awt.Polygon;
 
@@ -91,7 +92,14 @@ public class MyLine {
 		g.fillPolygon(p);
 		g.drawPolygon(xPoint2, yPoint2, 3);
 	}
-
+	//Ve line khi chi co mot diem
+	public void drawline(Graphics2D g) {
+		Path2D.Double k = new Path2D.Double();
+		k.moveTo(line.x1+10,line.y1);
+		k.curveTo(line.x1+35,Math.abs(line.y2-100),line.x1+120,line.y2,line.x1+30,line.y1+20);
+		g.draw(k);
+	}
+	//Ve mui ten cho line
 	public int getIndexP1() {
 		return indexP1;
 	}
